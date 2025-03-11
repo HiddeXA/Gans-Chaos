@@ -6,7 +6,28 @@
 @source "../**/*.js";
 @source "../**/*.vue";
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+
+
+body{
+    --orange: #FF6700;
+    --blue-dark: #004E98;
+    --blue-light: #3A6EA5;
+    --white: #EBEBEB;
+    --text-color-light: #FFFFFF;
+    --text-color-dark: #3C3C3C;
+
+    background-image: url('/resources/images/bg.png');
+    background-size: cover;
+}
+
+body:after {
+    content: "";
+    background: var(--blue-dark);
+    opacity: 0.75;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: -1;
 }
