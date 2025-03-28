@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Player extends Model
+class Player extends Authenticatable
 {
+    protected $guarded = ['id'];
+
     protected $fillable = [
         'gamer_tag',
         'email',
@@ -14,8 +17,14 @@ class Player extends Model
     ];
 
     protected $hidden = [
-        'password'
+        'password',
+        'remember_token',
     ];
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
 
 
 }

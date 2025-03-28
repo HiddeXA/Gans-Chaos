@@ -31,3 +31,8 @@ body:after {
     position: fixed;
     z-index: -1;
 }
+
+/* registration form */
+.registration-form-input {
+    @apply bg-(--white) text-(--text-color-dark) text-2xl border-3 border-(--blue-light) rounded-[15px] my-1 p-2 text-center
+}

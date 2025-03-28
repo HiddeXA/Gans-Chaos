@@ -12,12 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('players', function (Blueprint $table) {
-            $table->id();
+            $table->id()->unique();
             $table->timestamps();
-            $table->string('gamer_tag');
-            $table->string('email');
+            $table->string('gamer_tag')->unique();
+            $table->string('email')->unique();
             $table->string('password');
             $table->string('profile_picture')->nullable();
+            $table->rememberToken();
         });
     }
 
