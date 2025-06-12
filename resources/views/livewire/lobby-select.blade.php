@@ -9,7 +9,7 @@
         <div class="p-3 bg-(--white)/75 rounded-b-[24px] border-b-8 border-x-8 border-(--blue-light) overflow-y-scroll h-[75vh]">
 
             @foreach($lobbies as $lobby)
-                @if($lobby->game->completed()) @continue @endif
+                @if($lobby->completed()) @continue @endif
                 <livewire:lobby-select-item :lobby="$lobby" :key="$lobby->id" />
             @endforeach
             @if(count($lobbies) == 0)

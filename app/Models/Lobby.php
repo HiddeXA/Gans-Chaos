@@ -25,5 +25,13 @@ class Lobby extends Model
         return $this->hasOne(Game::class, 'lobby_id');
     }
 
+    public function completed()
+    {
+        if (isset($this->game) && $this->game->game_data['winner'] != null) {
+            return true;
+        }
+        return false;
+    }
+
 
 }

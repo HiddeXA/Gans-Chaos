@@ -25,7 +25,7 @@
     </div>
     @endisset
 
-    <div class="z-10 rounded-2xl m-auto w-1/4 h-6 bg-(--white) border-2 border-(--blue-light) text-center text-3xl p-4">{{isset($game->lobby->players[$game->game_data['current_turn']]) ? $game->lobby->players[$game->game_data['current_turn']]->gamer_tag . 'is aan de beurt' : ''}} </div>
+    <div class="z-10 rounded-2xl m-auto w-1/4 h-fit bg-(--white) border-2 border-(--blue-light) text-center text-3xl p-4">{{isset($game->lobby->players[$game->game_data['current_turn']]) ? $game->lobby->players[$game->game_data['current_turn']]->gamer_tag . ' is aan de beurt' : ''}} </div>
 
     <div class="z-10 absolute bottom-5 w-full justify-center flex">
         <button wire:click='rollDice' class="disabled:opacity-70 disabled:bg-gray-600 rounded-2xl hover:bg-amber-500  w-fit text-(--white) bg-(--orange) text-center text-3xl p-4" @if(empty($game->lobby->players[$game->game_data['current_turn']]) || $game->lobby->players[$game->game_data['current_turn']]->gamer_tag != auth()->user()->gamer_tag || $game->game_data['winner'] != null) disabled @endif > Dobbellen</button>
