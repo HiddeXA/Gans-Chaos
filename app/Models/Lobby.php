@@ -10,16 +10,11 @@ class Lobby extends Model
     protected $fillable = [
         'name',
         'max_players',
-        'players'
-    ];
-
-    protected $casts = [
-        'players' => 'array'
     ];
 
     public function players() : HasMany
     {
-        return $this->hasMany(Player::class);
+        return $this->hasMany(Player::class, 'current_lobby_id');
     }
 
 

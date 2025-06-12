@@ -13,7 +13,9 @@ class Player extends Authenticatable
         'gamer_tag',
         'email',
         'password',
-        'profile_picture'
+        'profile_picture',
+        'current_lobby_id',
+        'ready',
     ];
 
     protected $hidden = [
@@ -24,6 +26,13 @@ class Player extends Authenticatable
     public function getAuthPassword()
     {
         return $this->password;
+    }
+
+    public function resetLobbyArgs()
+    {
+        $this->current_lobby_id = null;
+        $this->ready = false;
+        $this->save();
     }
 
 
