@@ -11,6 +11,11 @@ class LobbyController extends Controller
 {
     public function index()
     {
+        $player = auth()->user();
+        $player->ready = false;
+        $player->current_lobby_id = null;
+        $player->save();
+
         return view('pages/lobby/index');
     }
 

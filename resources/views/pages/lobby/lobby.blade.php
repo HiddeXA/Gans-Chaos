@@ -11,7 +11,7 @@
                     <livewire:lobby-player-list :lobby="$lobby" />
                 </div>
                 <div class="md:p-3 p-1 flex-3/12">
-                    <a href="" class="bg-(--blue-light) p-2 rounded-xl text-2xl text-(--text-color-light)">Lobby verlaten</a>
+                    <a href="{{route('lobbySelect')}}" class="bg-(--blue-light) p-2 rounded-xl text-2xl text-(--text-color-light)">Lobby verlaten</a>
 
                     <livewire:lobby-ready-button :lobby="$lobby" />
                 </div>
