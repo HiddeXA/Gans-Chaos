@@ -10,9 +10,9 @@
                 <form id="loginForm">
                     @csrf <!-- {{ csrf_field() }} -->
                     <div class="flex flex-col md:p-3 p-1 md:mx-7">
-                        <input required name="email" class="registration-form-input" placeholder="E-mail" type="email">
-                        <input required name="password" class="registration-form-input" placeholder="Wachtwoord" type="password">
-                        <input class="text-2xl bg-(--orange) rounded-full text-(--text-color-light) p-3 my-3" type="submit" value="Inloggen">
+                        <input data-cy="email" required name="email" class="registration-form-input" placeholder="E-mail" type="email">
+                        <input data-cy="password" required name="password" class="registration-form-input" placeholder="Wachtwoord" type="password">
+                        <input data-cy="login-button" class="text-2xl bg-(--orange) rounded-full text-(--text-color-light) p-3 my-3" type="submit" value="Inloggen">
                     </div>
                 </form>
                 <div class="h-12">
