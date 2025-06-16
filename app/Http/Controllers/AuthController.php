@@ -6,6 +6,7 @@ use App\Models\Player;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -39,14 +40,10 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        if ($request->hasFile('profile_picture')) {
-            $image = $request->profile_picture;
-            $image = str_replace('data:image/png;base64,', '', $image);
-            $image = str_replace(' ', '+', $image);
-            $imageName = str_random(10).'.'.'png';
-            Storage::disk('public')->put('profileImages/' . $imageName, base64_decode($image));
-
-            $player->profile_picture = $imageName;
+        if (isset($request->profile_picture)) {
+            $image = $request->file('profile_picture');
+            $path = $image->store('profile_images', 'public');
+            $player->profile_picture = $path;
             $player->save();
         }
 

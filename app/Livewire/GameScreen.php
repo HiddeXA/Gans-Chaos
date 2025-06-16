@@ -14,10 +14,11 @@ class GameScreen extends Component
 
     public function mount()
     {
-        isset($this->game->lobby->players[0]) ? $this->profileImages[$this->game->lobby->players[0]->gamer_tag] = 'https://avatar.iran.liara.run/public/boy?username=Ash': '';
-        isset($this->game->lobby->players[1]) ? $this->profileImages[$this->game->lobby->players[1]->gamer_tag] = 'https://avatar.iran.liara.run/public/77': '';
-        isset($this->game->lobby->players[2]) ? $this->profileImages[$this->game->lobby->players[2]->gamer_tag] = 'https://avatar.iran.liara.run/public/20' : '';
-        isset($this->game->lobby->players[3]) ? $this->profileImages[$this->game->lobby->players[3]->gamer_tag] = 'https://avatar.iran.liara.run/public/56' : '';
+        foreach ($this->game->lobby->players as $player) {
+            $this->profileImages[$player->gamer_tag] = $player->profile_picture ??  'images/default-profile-pic.jpg';
+        }
+
+
     }
 
     public function render()

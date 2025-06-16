@@ -23,6 +23,11 @@ class Player extends Authenticatable
         'remember_token',
     ];
 
+    protected $casts = [
+        'ready' => 'boolean',
+    ];
+
+
     public function getAuthPassword()
     {
         return $this->password;

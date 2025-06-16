@@ -1,4 +1,3 @@
-
 imageInp.onchange = evt => {
     const [file] = imageInp.files
     if (file) {
@@ -11,26 +10,17 @@ registerForm.onsubmit = async evt => {
 
     const formData = new FormData(registerForm)
 
-    var object = {};
-    formData.forEach((value, key) => object[key] = value);
-
     if (imageInp.files[0] !== undefined) {
-        await toBase64(imageInp.files[0]).then(
-            data => object.profile_picture = data
-        );
+        formData.set('profile_picture', imageInp.files[0]);
     }
-
-    var json = JSON.stringify(object);
 
     fetch('/registreren', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'url': '/registreren',
-            "X-CSRF-Token": document.querySelector('input[name=_token]').value
+            'X-CSRF-Token': document.querySelector('input[name=_token]').value
         },
-        body: json
+        body: formData // Verstuur FormData direct, niet als JSON
     }).then(response => {
         if (response.status === 200) {
             response.json().then(data => {
@@ -38,7 +28,7 @@ registerForm.onsubmit = async evt => {
             })
         } else {
             response.json().then(data => {
-                for ( var key in data.errors ) {
+                for (var key in data.errors) {
                     Swal.fire({
                         toast: true,
                         title: "Oeps!",
@@ -50,11 +40,3 @@ registerForm.onsubmit = async evt => {
         }
     });
 }
-
-const toBase64 = file => new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = reject;
-});
-
